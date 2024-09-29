@@ -37,30 +37,3 @@ export const fetchCoffee = () => async (dispatch) => {
     }
 };
 
-export const fetchCoffeeAsc = () => async (dispatch) => {
-    try {
-        dispatch(sortCoffeeAsc());
-
-        const res = await fetch('https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee');
-        const data = await res.json();
-
-        data.sort((a, b) => a.price - b.price);
-        dispatch(fetchCoffeeSuccess(data));
-    } catch (error) {
-        dispatch(fetchCoffeeFailure());
-    }
-};
-
-export const fetchCoffeeDesc = () => async (dispatch) => {
-    try {
-        dispatch(sortCoffeeDesc());
-
-        const res = await fetch('https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee');
-        const data = await res.json();
-
-        data.sort((a, b) => b.price - a.price);
-        dispatch(fetchCoffeeSuccess(data));
-    } catch (error) {
-        dispatch(fetchCoffeeFailure());
-    }
-};
